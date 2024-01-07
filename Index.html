@@ -40020,13 +40020,45 @@ $('#result').scrollTop($('#result')[0].scrollHeight);
 x = x + 50;
 
 //$("#result").animate({scrollTop: $('.lines:last').offset().top});
-
+start();
         }
 var interval = '';
 function start(){
-var random = Math.floor(Math.random() * 5000);
-interval = setInterval(selectRandomLine,random);
+    var speed = parseInt($('.speed').val());
+    console.log(speed);
+    if(speed > 1000){
+        var randomplus = Math.floor( Math.random() * 1000 );
+    }else{
+        var randomplus = Math.floor( Math.random() * 100 );
+    }
+    console.log( randomplus );
+
+
+    if(Math.random() > 0.5){
+        var random = speed + randomplus;
+    }else{
+        var random = speed - randomplus;
+    }
+console.log(random);
+interval = setTimeout(selectRandomLine,random);
 }
+
+$('.speed').on('change',function(){
+    var val = $(this).val();
+    $('.speed_number').text(val);
+    if(val >= 1000){
+        var num = Math.round(val/1000)*1000;
+    }else{
+        var num = Math.round(val/100)*100;
+    }
+
+    console.log(num);
+    $('.speed2').val(num);
+});
+$('.speed2').on('change',function(){
+    $('.speed_number').text($(this).val());
+    $('.speed').val($(this).val());
+});
 
 $('.next-line').click(function(){
 
@@ -40131,6 +40163,33 @@ margin-left:30px;
       </div></p>
       <button class="btn btn-primary next-line" onclick="">Next Line</button>
 <button class="btn btn-primary pause" onclick="">Pause</button>
+<br>
+<br>
+<label for="customRange2" class="form-label speed_number">3000</label>
+<input type="range" class="form-range speed" min="100" max="10000" id="customRange2" value="3000" step="100">
+<select class="form-select speed2" aria-label="Default select example">
+    <option value="100">0.1</option>
+    <option value="200">0.2</option>
+    <option value="300">0.3</option>
+    <option value="400" >0.4</option>
+    <option value="500" >0.5</option>
+    <option value="600" >0.6</option>
+    <option value="700" >0.7</option>
+    <option value="800" >0.8</option>
+    <option value="900" >0.9</option>
+
+    <option value="1000">1</option>
+    <option value="2000">2</option>
+    <option value="3000" selected>3</option>
+    <option value="4000" >4</option>
+    <option value="5000" >5</option>
+    <option value="6000" >6</option>
+    <option value="7000" >7</option>
+    <option value="8000" >8</option>
+    <option value="9000" >9</option>
+    <option value="10000" >10</option>
+
+  </select>
     </div>
 
 <div class="game">
