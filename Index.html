@@ -40019,6 +40019,7 @@ get_word();
 
                      if ('speechSynthesis' in window) {
                          var msg = new SpeechSynthesisUtterance(selectedLine);
+                      msg.volume = 0.4;
                          window.speechSynthesis.speak(msg);
                      }
          
