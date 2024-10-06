@@ -40016,6 +40016,12 @@ get_word();
             //document.getElementById("result").innerHTML += '<br><br>' + selectedLine;
             document.getElementById("result").innerHTML += '<div class="lines">'+selectedLine + '</div>';
 
+
+                     if ('speechSynthesis' in window) {
+                         var msg = new SpeechSynthesisUtterance(selectedLine);
+                         window.speechSynthesis.speak(msg);
+                     }
+         
 $('#result').scrollTop($('#result')[0].scrollHeight);
 x = x + 50;
 
